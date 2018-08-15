@@ -1,2 +1,2 @@
 # hyperledger-composer
-Hyperledger Composer sample applications
+Hyperledger Composer sample applications.
