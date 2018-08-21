@@ -1,0 +1,85 @@
+{ 
+  "d" : {
+    "deviceIdComment" : "Make sure the deviceId below matches the Home Automation Controller you have defined in Watson IoT",
+    "deviceId" : "Node-Controller-1",
+    "deviceResponse" : "discovery",    
+
+    "devicesComment" : "Add devices that your home automation system wants to be discoverable in the devices array below",
+    "devices" : [
+      {
+        "deviceId" : "Outlet-1",            
+        "description" : "433MHz RF Outlet",            
+        "actions" : [                
+          {                    
+            "action" : "on", 
+            "description" : "Turns the outlet on",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "1119539",
+            "delay" : "170"
+          },                
+          {                    
+            "action" : "off", 
+            "description" : "Turns the outlet off",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "1119548",
+            "delay" : "170"
+          }
+        ]        
+      },        
+      {            
+        "deviceId" : "Outlet-2",            
+        "description" : "433MHz RF Outlet",            
+        "actions" : [                
+          {                    
+            "action" : "on", 
+            "description" : "Turns the outlet on",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "1120003",
+            "delay" : "170"
+          },                
+          {                    
+            "action" : "off", 
+            "description" : "Turns the outlet off",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "1120012",
+            "delay" : "170"
+          }
+        ]        
+      },        
+      {            
+        "deviceId" : "Alarm-1",            
+        "description" : "433MHz Home Alarm System",       
+        "actions" : [                
+          {                    
+            "action" : "arm-away",                    
+            "description" : "Arms the system in away mode (motion sensors active)",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "12935172",
+            "delay" : "434"
+          },                
+          {                    
+            "action" : "arm-stay",
+            "description" : "Arms the system in stay mode (motion sensors inactive)",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "12935170",
+            "delay" : "434"
+          },                
+          {                    
+            "action" : "off",
+            "description" : "Disarms the system",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "12935169",
+            "delay" : "434"
+          },                
+          {                    
+            "action" : "panic",                    
+            "description" : "Triggers the alarm siren (SOS)",
+            "433MHzComment" : "Replace the encoding and delay with the specific values for your RF Outlet",
+            "encoding" : "12935176",
+            "delay" : "434"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Node JS code for Makoto Home Automation",
+  "main": "discovery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jstevenperry/developerWorks.git"
+  },
+  "author": "J Steven Perry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jstevenperry/developerWorks/issues"
+  },
+  "homepage": "https://github.com/jstevenperry/developerWorks#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "ibmiotf": "^0.2.41",
+    "winston": "^2.4.1"
+  }
+}

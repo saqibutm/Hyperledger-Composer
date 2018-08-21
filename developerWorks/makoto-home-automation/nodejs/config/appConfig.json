@@ -1,0 +1,12 @@
+{
+    "org" : "YOUR_ORG_ID_HERE",
+    "id" : "homeautomation",
+    "domain" : "internetofthings.ibmcloud.com",
+    "auth-key" : "YOUR_AUTH_KEY_HERE",
+    "auth-token" : "YOUR_AUTH_TOKEN_HERE",
+
+    "deviceType" : "HomeAutomationController",
+    "deviceId" : "Node-Controller-1",
+
+    "transmitterProgram" : "codesend"
+}

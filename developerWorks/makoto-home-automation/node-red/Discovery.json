@@ -1,0 +1,147 @@
+[
+    {
+        "id": "4a7a5d15.095184",
+        "type": "tab",
+        "label": "Flow 4"
+    },
+    {
+        "id": "c89a35f4.c6cdb8",
+        "type": "ibmiot in",
+        "z": "4a7a5d15.095184",
+        "authentication": "apiKey",
+        "apiKey": "73581392.a1cf9c",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "Controller-1",
+        "applicationId": "",
+        "deviceType": "HomeAutomationController",
+        "eventType": "request",
+        "commandType": "",
+        "format": "json",
+        "name": "App Request Listener",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": "",
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "f61814a8.330858"
+            ]
+        ]
+    },
+    {
+        "id": "f61814a8.330858",
+        "type": "switch",
+        "z": "4a7a5d15.095184",
+        "name": "DeviceRouter",
+        "property": "payload.d.deviceRequest.deviceId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Controller-1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "3dc05963.77a646"
+            ]
+        ]
+    },
+    {
+        "id": "3dc05963.77a646",
+        "type": "switch",
+        "z": "4a7a5d15.095184",
+        "name": "Controller-1-Router",
+        "property": "payload.d.deviceRequest.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "discovery",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "a77d7ceb.0a1ed"
+            ]
+        ]
+    },
+    {
+        "id": "a77d7ceb.0a1ed",
+        "type": "function",
+        "z": "4a7a5d15.095184",
+        "name": "Device Info",
+        "func": "var discoveries = {\n    deviceId : \"Controller-1\",\n    deviceResponse : \"discovery\",\n    devices : [\n      {\n        deviceId : \"Outlet-1\",\n        description : \"433MHz RF Outlet\",\n        actions : [\n          {\n            action : \"on\",\n            description : \"Turns the outlet on\"\n  \n          },\n          {\n            action : \"off\",\n            description : \"Turns the outlet off\"\n          }\n        ]\n      },\n      {\n        deviceId : \"Outlet-2\",\n        description : \"433MHz RF Outlet\",\n        actions : [\n          {\n            action : \"on\",\n            description : \"Turns the outlet on\"\n  \n          },\n          {\n            action : \"off\",\n            description : \"Turns the outlet off\"\n          }\n        ]\n      },\n      {\n        deviceId : \"Outlet-3\",\n        description : \"433MHz RF Outlet\",\n        actions : [\n          {\n            action : \"on\",\n            description : \"Turns the outlet on\"\n  \n          },\n          {\n            action : \"off\",\n            description : \"Turns the outlet off\"\n          }\n        ]\n      },\n      {\n        deviceId : \"Alarm-1\",\n        description : \"433MHz Home Alarm System\",\n        actions : [\n          {\n            action : \"arm-away\",\n            description : \"Arms the system in away mode (motion sensors active)\"\n          },\n          {\n            action : \"arm-stay\",\n            description : \"Arms the system in stay mode (motion sensors inactive)\"\n          },\n          {\n            action : \"off\",\n            description : \"Disarms the system\"\n          },\n          {\n            action : \"panic\",\n            description : \"Triggers the alarm siren (SOS)\"\n          }\n        ]\n      }\n    ]\n  };\n  msg.payload = discoveries;\n  return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 220,
+        "wires": [
+            [
+                "2327575c.889b48"
+            ]
+        ]
+    },
+    {
+        "id": "2327575c.889b48",
+        "type": "wiotp out",
+        "z": "4a7a5d15.095184",
+        "authType": "d",
+        "qs": "false",
+        "qsDeviceId": "",
+        "deviceKey": "da3c804f.1d8e1",
+        "deviceType": "",
+        "deviceId": "",
+        "event": "response",
+        "format": "json",
+        "qos": "",
+        "name": "Requester",
+        "x": 890,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "73581392.a1cf9c",
+        "type": "ibmiot",
+        "z": "",
+        "name": "HomeAutomationControllerAPIKey",
+        "keepalive": "60",
+        "serverName": "",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "da3c804f.1d8e1",
+        "type": "wiotp-credentials",
+        "z": "",
+        "name": "Controller-1",
+        "org": "qsj4yy",
+        "serverName": "",
+        "devType": "HomeAutomationController",
+        "devId": "Controller-1",
+        "keepalive": "60",
+        "cleansession": true,
+        "tls": "",
+        "usetls": false
+    }
+]

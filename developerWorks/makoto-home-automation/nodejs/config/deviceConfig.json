@@ -1,0 +1,7 @@
+{
+    "org" : "YOUR_ORG_ID_HERE",
+    "type" : "HomeAutomationController",
+    "id" : "Node-Controller-1",
+    "auth-method" : "token",
+    "auth-token" : "YOUR_DEVICE_AUTH_TOKEN_HERE"
+}
