@@ -101,74 +101,24 @@ function payOut(shipmentReceived) {
  * @transaction
  */
 function temperatureReading(temperatureReading) {
- 
+
     var shipment = temperatureReading.shipment;
-    var NS = "org.acme.shipping.perishable";
-    var contract = shipment.contract;
-    var factory = getFactory();
- 
+    var NS = 'org.acme.shipping.perishable';
+
     console.log('Adding temperature ' + temperatureReading.centigrade + ' to shipment ' + shipment.$identifier);
- 
+
     if (shipment.temperatureReadings) {
         shipment.temperatureReadings.push(temperatureReading);
     } else {
         shipment.temperatureReadings = [temperatureReading];
     }
- 
-    if (temperatureReading.centigrade < contract.minTemperature ||
-        temperatureReading.centigrade > contract.maxTemperature) {
-        var temperatureEvent = factory.newEvent(NS, 'TemperatureThresholdEvent');
-        temperatureEvent.shipment = shipment;
-        temperatureEvent.temperature = temperatureReading.centigrade;
-        temperatureEvent.message = 'Temperature threshold violated! Emitting TemperatureEvent for shipment: ' + shipment.$identifier;
-        console.log(temperatureEvent.message);
-        emit(temperatureEvent);
-    }
- 
+
     return getAssetRegistry(NS + '.Shipment')
         .then(function (shipmentRegistry) {
             // add the temp reading to the shipment
             return shipmentRegistry.update(shipment);
         });
 }
-
-/**
- * A GPS reading has been received for a shipment
- * @param {org.acme.shipping.perishable.GpsReading} gpsReading - the GpsReading transaction
- * @transaction
- */
-function gpsReading(gpsReading) {
- 
-    var factory = getFactory();
-    var NS = "org.acme.shipping.perishable";
-    var shipment = gpsReading.shipment;
-    var PORT_OF_NEW_YORK = '/LAT:40.6840N/LONG:74.0062W';
-     
-    var latLong = '/LAT:' + gpsReading.latitude + gpsReading.latitudeDir + '/LONG:' +
-        gpsReading.longitude + gpsReading.longitudeDir;
-     
-    if (shipment.gpsReadings) {
-        shipment.gpsReadings.push(gpsReading);
-    } else {
-        shipment.gpsReadings = [gpsReading];
-    }
- 
-    if (latLong == PORT_OF_NEW_YORK) {
-        var shipmentInPortEvent = factory.newEvent(NS, 'ShipmentInPortEvent');
-        shipmentInPortEvent.shipment = shipment;
-        var message = 'Shipment has reached the destination port of ' + PORT_OF_NEW_YORK;
-        shipmentInPortEvent.message = message;
-        console.log(message);
-        emit(shipmentInPortEvent);
-    }
- 
-    return getAssetRegistry(NS + '.Shipment')
-    .then(function (shipmentRegistry) {
-        // add the temp reading to the shipment
-        return shipmentRegistry.update(shipment);
-    });
-}
-
 
 /**
  * Initialize some test assets and participants useful for running a demo.

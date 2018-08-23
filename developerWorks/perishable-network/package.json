@@ -3,7 +3,7 @@
     "composer": "^0.15.0"
   },
   "name": "perishable-network",
-  "version": "0.1.12",
+  "version": "0.1.11",
   "description": "Shipping Perishable Goods Business Network",
   "networkImage": "https://github.com/makotogo/developerWorks/perishable-network/networkimage.svg",
   "networkImageanimated": "https://github.com/makotogo/developerWorks/perishable-network/networkimageanimated.svg",
@@ -16,7 +16,7 @@
     "licchk": "license-check",
     "postlicchk": "npm run doc",
     "doc": "jsdoc --pedantic --recurse -c jsdoc.json",
-    "test": "mocha -t 0 --recursive && cucumber-js",
+    "test": "mocha -t 0 --recursive",
     "deploy": "./scripts/deploy.sh"
   },
   "repository": {
@@ -40,8 +40,6 @@
     "composer-cli": "^0.14.0-0",
     "composer-client": "^0.14.0-0",
     "composer-connector-embedded": "^0.14.0-0",
-    "composer-cucumber-steps": "^0.14.0-0",
-    "cucumber": "^2.2.0",
     "eslint": "^3.6.1",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.1",

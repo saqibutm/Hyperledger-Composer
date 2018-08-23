@@ -28,16 +28,6 @@ enum ShipmentStatus {
 }
 
 /**
- * Directions of the compass
- */
-enum CompassDirection {
-  o N
-  o S
-  o E
-  o W
-}
-
-/**
  * An abstract transaction that is related to a Shipment
  */
 abstract transaction ShipmentTransaction {
@@ -50,19 +40,6 @@ abstract transaction ShipmentTransaction {
  */
 transaction TemperatureReading extends ShipmentTransaction {
   o Double centigrade
-}
-
-/**
- * A GPS reading for a shipment. E.g. received from a device
- * within a shipping container
- */
-transaction GpsReading extends ShipmentTransaction {
-  o String readingTime
-  o String readingDate
-  o String latitude
-  o CompassDirection latitudeDir
-  o String longitude
-  o CompassDirection longitudeDir
 }
 
 /**
@@ -82,7 +59,6 @@ asset Shipment identified by shipmentId {
   o ShipmentStatus status
   o Long unitCount
   o TemperatureReading[] temperatureReadings optional
-  o GpsReading[] gpsReadings optional
   --> Contract contract
 }
 
@@ -140,23 +116,6 @@ participant Shipper extends Business {
  * An Importer is a type of participant in the network
  */
 participant Importer extends Business {
-}
-
-/**
- * An event - when the temperature goes outside the agreed-upon boundaries
- */
-event TemperatureThresholdEvent {
-  o String message
-  o Double temperature
-  --> Shipment shipment
-}
- 
-/**
- * An event - when the ship arrives at the port
- */
-event ShipmentInPortEvent {
-  o String message
-  --> Shipment shipment
 }
 
 /**

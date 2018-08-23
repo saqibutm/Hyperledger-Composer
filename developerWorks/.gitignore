@@ -1,0 +1,8 @@
+/.metadata/
+.DS_Store
+makoto-home-automation/actual_environment.properties
+makoto-home-automation/nodejs/package-lock.json
+**/node_modules/**
+makoto-home-automation/nodejs/config/myDeviceConfig.json
+makoto-home-automation/nodejs/config/myAppConfig.json
+makoto-home-automation/nodejs/winston.log
