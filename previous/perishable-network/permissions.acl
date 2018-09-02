@@ -1,0 +1,53 @@
+/**
+ * Access control file always tak effect from top rule to bottom rule.
+ */
+rule CanDelete {
+    description: "Billy candelete contracts that he is part of it"
+    participant (m): "org.acme.shipping.perishable.Grower#billy@gmail.com"
+    operation: DELETE
+    resource (v): "org.acme.shipping.perishable.Contract"
+   condition: (v.grower.getIdentifier() == m.getIdentifier())
+    action: ALLOW
+}
+
+rule CannotDelete {
+    description: "Billy cannot delete any assets"
+    participant: "org.acme.shipping.perishable.Grower#billy@gmail.com"
+    operation: DELETE
+    resource: "org.acme.shipping.perishable.Contract"
+    action: DENY
+}
+
+rule Default {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: ALL
+    resource: "org.acme.shipping.perishable.*"
+    action: ALLOW
+}
+
+rule SystemACL {
+    description:  "System ACL to permit all access"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+// Special cases
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
